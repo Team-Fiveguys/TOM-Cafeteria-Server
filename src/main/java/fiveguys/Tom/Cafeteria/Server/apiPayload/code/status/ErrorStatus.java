@@ -34,6 +34,7 @@ public enum ErrorStatus implements BaseCode {
     DIET_IS_BLANK(HttpStatus.BAD_REQUEST, "DIET4003", "식당은 공백일 수 없습니다."),
     DIET_TOO_LONG(HttpStatus.BAD_REQUEST, "DIET4004", "해당 식당의 길이가 100을 넘어갑니다."),
     DIET_IS_ALREADY_ENROLLED(HttpStatus.BAD_REQUEST, "DIET4005", "식당에 이미 해당 날짜와 식때에 대한 식단이 등록되어 있습니다."),
+    MENU_IS_NOT_FOUND_FROM_THIS_DIET(HttpStatus.NOT_FOUND, "DIET4007", "삭제하려는 메뉴가 해당 식단에 존재하지 않습니다."),
     // 식당 관련 응답
     CAFETERIA_NOT_FOUND(HttpStatus.NOT_FOUND, "CAFETERIA4001", "해당 식당 id가 존재하지 않습니다."),
     CAFETERIA_IS_EMPTY(HttpStatus.BAD_REQUEST, "CAFETERIA4002", "식당은 null일 수 없습니다."),
