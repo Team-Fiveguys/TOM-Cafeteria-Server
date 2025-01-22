@@ -2,7 +2,6 @@ package fiveguys.Tom.Cafeteria.Server.domain.user.controller;
 
 
 import fiveguys.Tom.Cafeteria.Server.apiPayload.ApiResponse;
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.dto.response.CafeteriaResponseDTO;
 import fiveguys.Tom.Cafeteria.Server.domain.user.dto.UserResponseDTO;
 import fiveguys.Tom.Cafeteria.Server.domain.user.service.UserCommandService;
 import fiveguys.Tom.Cafeteria.Server.domain.user.service.UserQueryService;

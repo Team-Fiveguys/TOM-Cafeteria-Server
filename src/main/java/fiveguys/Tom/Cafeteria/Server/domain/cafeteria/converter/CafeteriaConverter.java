@@ -1,8 +1,8 @@
 package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.converter;
 
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.dto.request.CafeteriaRequestDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.dto.response.CafeteriaResponseDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Cafeteria;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.request.CafeteriaRequestDTO;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response.CafeteriaResponseDTO;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Cafeteria;
 import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Congestion;
 
 import java.util.List;

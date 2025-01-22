@@ -1,7 +1,6 @@
-package fiveguys.Tom.Cafeteria.Server.domain.diet.dto;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response;
 
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Meals;
-import fiveguys.Tom.Cafeteria.Server.domain.menu.dto.MenuResponseDTO;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Meals;
 import lombok.*;
 
 import java.time.LocalDate;

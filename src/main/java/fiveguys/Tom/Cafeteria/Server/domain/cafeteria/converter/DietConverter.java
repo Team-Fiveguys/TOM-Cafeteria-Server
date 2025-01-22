@@ -1,30 +1,24 @@
-package fiveguys.Tom.Cafeteria.Server.domain.diet.converter;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.converter;
 
 
-import fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.entity.DietPhoto;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.dto.DietRequestDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.dto.DietResponseDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Diet;
-import fiveguys.Tom.Cafeteria.Server.domain.menu.dto.MenuResponseDTO;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response.DietResponseDTO;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response.MenuResponseDTO;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class DietConverter {
 
-    public static Diet toDiet(DietRequestDTO.DietCreateDTO dietCreateDTO){
-        Diet diet = Diet.builder()
-                .meals(dietCreateDTO.getMeals())
-                .localDate(dietCreateDTO.getDate())
-                .menuDietList(new ArrayList<>())
-                .dayOff(dietCreateDTO.isDayOff())
-                .build();
-        return diet;
-    }
+    public static DietResponseDTO.DietQueryDTO toDietResponseDTO(Diet diet, String prefixURI){
 
-    public static DietResponseDTO.DietQueryDTO toDietResponseDTO(String prefixURI, Diet diet, MenuResponseDTO.MenuResponseListDTO menuResponseListDTO){
+        List<MenuResponseDTO.MenuQueryDTO> menuQueryDTOList = diet.getMenuDietList().stream()
+                .map(menuDiet -> menuDiet.getMenu())
+                .map(menu -> MenuConverter.toMenuQueryDTO(menu))
+                .collect(Collectors.toList());
+        MenuResponseDTO.MenuResponseListDTO menuResponseListDTO = MenuConverter.toMenuResponseListDTO(menuQueryDTOList);
 
         return DietResponseDTO.DietQueryDTO.builder()
                 .dietId(diet.getId())
@@ -36,9 +30,12 @@ public class DietConverter {
                 .meals(diet.getMeals())
                 .build();
     }
-    public static DietResponseDTO.DietCreateDTO toDietCreateResponseDTO(Diet diet, List<String> enrolledMenuList){
+    public static DietResponseDTO.DietCreateDTO toDietCreateResponseDTO(Diet diet){
+        List<String> registeredMenuList = diet.getMenuDietList().stream()
+                .map(menuDiet -> menuDiet.getMenu().getName())
+                .collect(Collectors.toList());
         return DietResponseDTO.DietCreateDTO.builder()
-                .menuNameList(enrolledMenuList)
+                .menuNameList(registeredMenuList)
                 .cafeteriaId(diet.getCafeteria().getId())
                 .date(diet.getLocalDate())
                 .meals(diet.getMeals())

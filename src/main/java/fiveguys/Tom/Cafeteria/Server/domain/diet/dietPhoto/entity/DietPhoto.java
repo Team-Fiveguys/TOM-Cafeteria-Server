@@ -2,7 +2,7 @@ package fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.entity;
 
 
 import fiveguys.Tom.Cafeteria.Server.domain.common.BaseEntity;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Diet;
 import jakarta.persistence.*;
 import lombok.*;
 

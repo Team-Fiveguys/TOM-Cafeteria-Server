@@ -1,6 +1,6 @@
 package fiveguys.Tom.Cafeteria.Server.domain.diet.repository;
 
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Diet;
 import java.util.List;
 
 public interface DietRepositoryCustom {

@@ -8,8 +8,8 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import fiveguys.Tom.Cafeteria.Server.domain.common.RedisService;
 import fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.entity.DietPhoto;
 import fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.repository.DietPhotoRepository;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.dto.DietRequestDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Meals;
 import fiveguys.Tom.Cafeteria.Server.domain.diet.service.DietQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,22 +41,22 @@ public class DietPhotoServiceImpl implements DietPhotoService{
     private final RedisService redisService;
 
     @Override
-    public Optional<DietPhoto> getDietPhoto(DietRequestDTO.DietQueryDTO dietQueryDTO) {
-        Diet diet = dietQueryService.getDiet(dietQueryDTO.getCafeteriaId(), dietQueryDTO.getLocalDate(), dietQueryDTO.getMeals());
+    public Optional<DietPhoto> getDietPhoto(Long cafeteriaId, LocalDate date, Meals meals) {
+        Diet diet = dietQueryService.getDiet(cafeteriaId, date, meals);
         return Optional.ofNullable(diet.getDietPhoto());
     }
 
     @Override
     @Transactional
-    public DietPhoto uploadDietPhoto(DietRequestDTO.DietQueryDTO dietQueryDTO, MultipartFile multipartFile) {
-        DietPhoto dietPhoto = saveDietPhoto(dietQueryDTO, multipartFile.getOriginalFilename());
+    public DietPhoto uploadDietPhoto(Long cafeteriaId, LocalDate date, Meals meals, MultipartFile multipartFile) {
+        DietPhoto dietPhoto = saveDietPhoto(cafeteriaId, date, meals, multipartFile.getOriginalFilename());
         uploadFileToS3(multipartFile, dietPhoto.getImageKey());
         return dietPhoto;
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
-    public DietPhoto saveDietPhoto(DietRequestDTO.DietQueryDTO dietQueryDTO, String fileName){
-        Diet diet = dietQueryService.getDiet(dietQueryDTO.getCafeteriaId(), dietQueryDTO.getLocalDate(), dietQueryDTO.getMeals());
+    public DietPhoto saveDietPhoto(Long cafeteriaId, LocalDate date, Meals meals, String fileName){
+        Diet diet = dietQueryService.getDiet(cafeteriaId, date, meals);
         DietPhoto dietPhoto = DietPhoto.builder()
                 .diet(diet)
                 .imageKey(createFileName(fileName))
@@ -65,9 +66,9 @@ public class DietPhotoServiceImpl implements DietPhotoService{
 
     @Override
     @Transactional
-    public DietPhoto reuploadDietPhoto(DietRequestDTO.DietQueryDTO dietQueryDTO, MultipartFile multipartFile) {
+    public DietPhoto reuploadDietPhoto(Long cafeteriaId, LocalDate date, Meals meals, MultipartFile multipartFile) {
         // DietPhoto 수정
-        Diet diet = dietQueryService.getDiet(dietQueryDTO.getCafeteriaId(), dietQueryDTO.getLocalDate(), dietQueryDTO.getMeals());
+        Diet diet = dietQueryService.getDiet(cafeteriaId, date, meals);
         DietPhoto dietPhoto = dietPhotoRepository.findByDiet(diet);
         dietPhoto.changeImageKey(createFileName(multipartFile.getOriginalFilename()));
         // 새 이미지 S3에 업로드

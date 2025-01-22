@@ -1,4 +1,4 @@
-package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.dto.response;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response;
 
 
 import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Congestion;

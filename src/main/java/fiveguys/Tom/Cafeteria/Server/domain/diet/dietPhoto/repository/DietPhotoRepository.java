@@ -1,7 +1,7 @@
 package fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.repository;
 
 import fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.entity.DietPhoto;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Diet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain.Diet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DietPhotoRepository extends JpaRepository<DietPhoto, Long> {

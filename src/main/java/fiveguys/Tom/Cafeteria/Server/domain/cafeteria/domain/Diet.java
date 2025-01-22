@@ -1,13 +1,16 @@
-package fiveguys.Tom.Cafeteria.Server.domain.diet.entity;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain;
 
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Cafeteria;
+import fiveguys.Tom.Cafeteria.Server.apiPayload.code.status.ErrorStatus;
 import fiveguys.Tom.Cafeteria.Server.domain.common.BaseEntity;
 import fiveguys.Tom.Cafeteria.Server.domain.diet.dietPhoto.entity.DietPhoto;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Meals;
+import fiveguys.Tom.Cafeteria.Server.exception.GeneralException;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @DynamicUpdate
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"cafeteria_id", "local_date", "meals"}))
 public class Diet extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,25 +39,43 @@ public class Diet extends BaseEntity {
     private Cafeteria cafeteria;
 
     @OneToMany(mappedBy = "diet", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<MenuDiet> menuDietList;
+    private List<MenuDiet> menuDietList = new ArrayList<>();
 
     @OneToOne(mappedBy = "diet", cascade = CascadeType.ALL, orphanRemoval = true)
     private DietPhoto dietPhoto;
-    public void setCafeteria(Cafeteria cafeteria) {
-        this.cafeteria = cafeteria;
+
+    public void addMenuDiet(MenuDiet menuDiet){
+        this.menuDietList.add(menuDiet);
+    }
+    public void clearMenuDiet(){
+        for (MenuDiet menuDiet: this.menuDietList) {
+            menuDiet.clearMenu();
+        }
+        this.menuDietList.clear();
+    }
+    public void clearCafeteria(){
+        this.cafeteria = null;
     }
 
-    public void remove(MenuDiet menuDiet){
+    public void excludeMenu(String menuName){
+        MenuDiet menuDiet = this.menuDietList.stream()
+                .filter(md -> md.getMenu().getName().equals(menuName))
+                .findFirst()
+                .orElseThrow(() -> new GeneralException(ErrorStatus.MENU_IS_NOT_FOUND_FROM_THIS_DIET));
+        menuDiet.clearDiet();
         this.menuDietList.remove(menuDiet);
-        menuDiet.setDiet(null);
+        // 삭제 후 식단의 메뉴가 존재하지 않으면 식단도 삭제한다.
+        if(menuDietList.isEmpty()){
+            this.cafeteria.removeDiet(this);
+        }
     }
 
     public void switchSoldOut(){
-        this.soldOut = this.soldOut ? false : true;
+        this.soldOut = !this.soldOut;
     }
 
     public void switchDayOff(){
-        this.dayOff = this.dayOff ? false : true;
+        this.dayOff = !this.dayOff;
     }
 
     public String getMenuListString(){

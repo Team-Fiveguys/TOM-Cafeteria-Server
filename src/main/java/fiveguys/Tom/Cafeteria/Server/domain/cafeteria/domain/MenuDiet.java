@@ -1,8 +1,7 @@
-package fiveguys.Tom.Cafeteria.Server.domain.diet.entity;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain;
 
 
 import fiveguys.Tom.Cafeteria.Server.domain.common.BaseEntity;
-import fiveguys.Tom.Cafeteria.Server.domain.menu.entity.Menu;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,14 +22,22 @@ public class MenuDiet extends BaseEntity {
     private Menu menu;
 
     @JoinColumn(name = "diet_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Diet diet;
 
     public static MenuDiet createMenuDiet(Menu menu, Diet diet){
         MenuDiet menuDiet = new MenuDiet();
         menuDiet.setDiet(diet);
         menuDiet.setMenu(menu);
-        diet.getMenuDietList().add(menuDiet);
+        diet.addMenuDiet(menuDiet);
+        menu.addMenuDiet(menuDiet);
         return menuDiet;
+    }
+
+    public void clearMenu(){
+        this.menu = null;
+    }
+    public void clearDiet(){
+        this.diet = null;
     }
 }

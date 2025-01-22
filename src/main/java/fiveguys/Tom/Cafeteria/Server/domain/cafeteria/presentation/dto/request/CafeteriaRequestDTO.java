@@ -1,4 +1,4 @@
-package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.dto.request;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.request;
 
 import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Congestion;
 import lombok.*;

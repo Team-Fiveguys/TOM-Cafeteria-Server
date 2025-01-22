@@ -1,14 +1,13 @@
-package fiveguys.Tom.Cafeteria.Server.domain.diet.dto;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.request;
 
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.Meals;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Meals;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 public class DietRequestDTO {
 
@@ -16,7 +15,6 @@ public class DietRequestDTO {
     @NoArgsConstructor
     @Getter
     public static class DietQueryDTO{
-        private Long cafeteriaId;
         private Meals meals;
         private LocalDate localDate;
     }
@@ -44,20 +42,17 @@ public class DietRequestDTO {
     @NoArgsConstructor
     @Getter
     public static class ChangeMenuDTO{
-        private Long cafeteriaId;
         private LocalDate localDate;
         private Meals meals;
-        private String menuName;
     }
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class DietCreateDTO {
-        private List<String> menuNameList;
+        private Set<String> menuNameSet;
         private LocalDate date;
         private Meals meals; //key와 enum 클래스명이 같으면 매핑 가능
-        private Long cafeteriaId;
         private boolean dayOff;
     }
 }

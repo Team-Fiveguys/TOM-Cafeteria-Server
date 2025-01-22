@@ -1,11 +1,11 @@
-package fiveguys.Tom.Cafeteria.Server.domain.menu.entity;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.domain;
 
-import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.Cafeteria;
 import fiveguys.Tom.Cafeteria.Server.domain.common.BaseEntity;
-import fiveguys.Tom.Cafeteria.Server.domain.diet.entity.MenuDiet;
+import fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity.MenuCategory;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -34,7 +34,11 @@ public class Menu extends BaseEntity {
     private MenuCategory menuCategory;
 
     @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MenuDiet> menuDietList;
+    private List<MenuDiet> menuDietList = new ArrayList<>();
+
+    public void addMenuDiet(MenuDiet menuDiet){
+        this.menuDietList.add(menuDiet);
+    }
 
     public void clearMenuDiet(){
         for (MenuDiet menuDiet: this.menuDietList) {

@@ -1,4 +1,4 @@
-package fiveguys.Tom.Cafeteria.Server.domain.menu.entity;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.entity;
 
 import fiveguys.Tom.Cafeteria.Server.domain.common.BaseEntity;
 import jakarta.persistence.Entity;

@@ -1,7 +1,6 @@
-package fiveguys.Tom.Cafeteria.Server.domain.menu.dto;
+package fiveguys.Tom.Cafeteria.Server.domain.cafeteria.presentation.dto.response;
 
 
-import fiveguys.Tom.Cafeteria.Server.domain.menu.entity.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,8 +15,9 @@ public class MenuResponseDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
-    public static class MenuEnrollDTO{
+    public static class MenuRegisterDTO{
         private Long menuId;
+        private String menuName;
     }
     @Builder
     @AllArgsConstructor
