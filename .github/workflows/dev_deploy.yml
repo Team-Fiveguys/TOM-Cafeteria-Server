@@ -1,9 +1,9 @@
 name: TAM Dev CI/CD
 
-on:
-  pull_request:
-    types: [closed]
-  workflow_dispatch: # 수동 실행도 가능하도록
+#on:
+#  pull_request:
+#    types: [closed]
+#  workflow_dispatch: # 수동 실행도 가능하도록
 
 jobs:
   build:

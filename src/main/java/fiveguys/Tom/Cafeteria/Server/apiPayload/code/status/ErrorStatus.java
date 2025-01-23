@@ -34,6 +34,7 @@ public enum ErrorStatus implements BaseCode {
     DIET_IS_BLANK(HttpStatus.BAD_REQUEST, "DIET4003", "식당은 공백일 수 없습니다."),
     DIET_TOO_LONG(HttpStatus.BAD_REQUEST, "DIET4004", "해당 식당의 길이가 100을 넘어갑니다."),
     DIET_IS_ALREADY_ENROLLED(HttpStatus.BAD_REQUEST, "DIET4005", "식당에 이미 해당 날짜와 식때에 대한 식단이 등록되어 있습니다."),
+    MENU_IS_NOT_FOUND_FROM_THIS_DIET(HttpStatus.NOT_FOUND, "DIET4007", "삭제하려는 메뉴가 해당 식단에 존재하지 않습니다."),
     // 식당 관련 응답
     CAFETERIA_NOT_FOUND(HttpStatus.NOT_FOUND, "CAFETERIA4001", "해당 식당 id가 존재하지 않습니다."),
     CAFETERIA_IS_EMPTY(HttpStatus.BAD_REQUEST, "CAFETERIA4002", "식당은 null일 수 없습니다."),
@@ -44,6 +45,8 @@ public enum ErrorStatus implements BaseCode {
     // 알림 관련 에러
     NOTIFICATION_NOT_FOUND(HttpStatus.NOT_FOUND, "NOTIFICATION4001", "id에 해당하는 알림이 존재하지 않습니다."),
     NOTIFICATION_NOT_RELATIONAL(HttpStatus.BAD_REQUEST, "NOTIFICATION4002", "해당 user와 notification은 서로 관계가 없습니다."),
+    NOTIFICATION_TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST, "NOTIFICATION4004", "옳지 않은 알림 타입입니다. 서버측에 확인 요청을 하세요"),
+
     REGISTRATION_TOKEN_EMPTY(HttpStatus.NOT_FOUND, "NOTIFICATION4003", "알림을 보낼 대상이 없습니다."),
 
     // 로그인 관련 에러

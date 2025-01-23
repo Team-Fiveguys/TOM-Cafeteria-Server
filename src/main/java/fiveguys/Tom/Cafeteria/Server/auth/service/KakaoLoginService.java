@@ -6,7 +6,7 @@ import fiveguys.Tom.Cafeteria.Server.auth.feignClient.kakao.KakaoApiClient;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.kakao.KakaoAuthClient;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.kakao.dto.KakaoReqeustDTO;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.kakao.dto.KakaoResponseDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.user.entity.SocialType;
+import fiveguys.Tom.Cafeteria.Server.user.entity.SocialType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

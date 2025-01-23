@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.TimeZone;
@@ -19,6 +20,7 @@ import java.util.TimeZone;
 @EnableScheduling
 // 수동으로 FeignAutoConfiguration 가져오기
 @ImportAutoConfiguration({FeignAutoConfiguration.class})
+@EnableAsync
 public class TomCafeteriaServerApplication {
 	@PostConstruct
 	public void init() {
