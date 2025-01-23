@@ -2,9 +2,9 @@ package fiveguys.Tom.Cafeteria.Server.auth.jwt.service;
 
 
 import fiveguys.Tom.Cafeteria.Server.auth.jwt.JwtToken;
-import fiveguys.Tom.Cafeteria.Server.domain.common.RedisService;
-import fiveguys.Tom.Cafeteria.Server.domain.user.entity.User;
-import fiveguys.Tom.Cafeteria.Server.domain.user.service.UserQueryService;
+import fiveguys.Tom.Cafeteria.Server.common.RedisService;
+import fiveguys.Tom.Cafeteria.Server.user.entity.User;
+import fiveguys.Tom.Cafeteria.Server.user.service.UserQueryService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

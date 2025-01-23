@@ -5,7 +5,7 @@ import fiveguys.Tom.Cafeteria.Server.apiPayload.ApiResponse;
 import fiveguys.Tom.Cafeteria.Server.apiPayload.code.status.ErrorStatus;
 import fiveguys.Tom.Cafeteria.Server.auth.jwt.JwtToken;
 import fiveguys.Tom.Cafeteria.Server.auth.jwt.service.JwtUtil;
-import fiveguys.Tom.Cafeteria.Server.domain.common.RedisService;
+import fiveguys.Tom.Cafeteria.Server.common.RedisService;
 import fiveguys.Tom.Cafeteria.Server.exception.GeneralException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;

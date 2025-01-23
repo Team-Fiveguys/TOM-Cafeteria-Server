@@ -6,7 +6,7 @@ import fiveguys.Tom.Cafeteria.Server.apiPayload.code.status.ErrorStatus;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.dto.JwkResponse;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.apple.AppleAuthClient;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.kakao.KakaoAuthClient;
-import fiveguys.Tom.Cafeteria.Server.domain.user.entity.SocialType;
+import fiveguys.Tom.Cafeteria.Server.user.entity.SocialType;
 import fiveguys.Tom.Cafeteria.Server.exception.GeneralException;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;

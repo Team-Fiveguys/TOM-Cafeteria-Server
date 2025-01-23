@@ -3,7 +3,7 @@ package fiveguys.Tom.Cafeteria.Server.auth.service;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.TokenResponse;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.apple.AppleAuthClient;
 import fiveguys.Tom.Cafeteria.Server.auth.feignClient.dto.AppleRequestDTO;
-import fiveguys.Tom.Cafeteria.Server.domain.user.entity.SocialType;
+import fiveguys.Tom.Cafeteria.Server.user.entity.SocialType;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
